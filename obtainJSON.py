@@ -1,3 +1,5 @@
+import json
+
 subscription_key = "bcc31143253f412a80d0e8ec15938001"
 assert subscription_key
 
@@ -14,36 +16,17 @@ response = requests.post(vision_analyze_url, headers=headers, params=params, jso
 response.raise_for_status()
 analysis = response.json()
 
-#image_caption = analysis["description"]["captions"][0]["text"].capitalize()
-#print(image_caption)
+allresults = (analysis["tags"])
+nameList = []
+confidList = []
 
-print(analysis["tags"])
+#storing all of the names in an array
+for i in allresults:
+    nameList.append(i['name'])
+    confidList.append(int(round(i['confidence']*10)))
+    
+    
+print(nameList[1])
+print(confidList[1])
+    
 
-
-
-
-
-
-
-
-
-# import http.client, urllib.request, urllib.parse, urllib.error, base64
-#
-# headers = {
-#     # Request headers
-#     'Content-Type': 'application/json',
-#     'Ocp-Apim-Subscription-Key': 'bcc31143253f412a80d0e8ec15938001',
-# }
-#
-# params = urllib.parse.urlencode({
-# })
-#
-# try:
-#     conn = http.client.HTTPSConnection('eastus.api.cognitive.microsoft.com')
-#     conn.request("POST", "/vision/v1.0/tag?%s" % params, "{body}", headers)
-#     response = conn.getresponse()
-#     data = response.read()
-#     print(data)
-#     conn.close()
-# except Exception as e:
-#     print("[Errno {0}] {1}".format(e.errno, e.strerror))
