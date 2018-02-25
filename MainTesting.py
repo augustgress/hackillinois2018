@@ -82,7 +82,7 @@ def getUrls(s):
       count = 0
       while(count < c and bad<10):
         try:
-          r = requests.get(random_line(f), stream=True, timeout = .5)
+          r = requests.get(random_line(f), stream=True)
           f.seek(0)
           r.raise_for_status()
           tempUrl = r.url
@@ -171,7 +171,7 @@ class User:
         " pwdhash, image, private, tags, matched, flag, priv) VALUES ('"+
         self.fName + "', '" + self.lName + "', '" + self.email + "', '" + self.age + "', '" +
         self.gend + "', '" + self.orientation + "', '" + self.city +", " + self.state + "', '" + self.pw +
-        "', '" + self.urlsPublic + "', '" + self.urlsPrivate + "', '" + self.doc + "', '', '', '');")
+        "', '" + self.urlsPublic + "', '" + self.urlsPrivate + "', '" + self.doc + "', '', '', '');\n\n\n\n")
 
 
         # out.write("FNAME: "+self.fName+"\n")
@@ -196,7 +196,7 @@ class User:
 # user.printToFile("Users/users.txt")
 
 count = 0
-for i in range(1):
+for i in range(30):
     user = User()
     print(count+1)
     user.printToFile("Users/usersNew.txt")
