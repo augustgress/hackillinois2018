@@ -96,7 +96,7 @@ def returnTopThree(index):
     matches = sorted(range(len(cosine_similarities)), key=lambda i:cosine_similarities[i])[::-1][1:4]
     return matches
 
-#print(returnTopThree(5))
+print(returnTopThree(5))
 
 
 
