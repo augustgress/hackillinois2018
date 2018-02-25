@@ -2,12 +2,12 @@ import os
 import sqlalchemy
 # from sqlalchemy import create_engine
 # from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey
-from sqlalchemy.sql import select
+import psycopg2
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 
 
-engine = create_engine('postgres://localhost/hackillinois2018', echo=True)
+engine = create_engine('sqlite:///:memory:', echo=True)
 
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "PkeyGCP.json"
@@ -39,26 +39,45 @@ print(addCloud("hike.jpg"))
 
 
 def returnTopThree(index):
+    con = None
     docs = []
-    conn = engine.connect()
-    s = select([users])
-    result = conn.execute(s)
-    for row in result:
-        docs.append(row["docs"])
+    try:
+        con = psycopg2.connect("host='localhost' dbname='testdb' user='pythonspot' password='password'")
+        cur = con.cursor()
+        cur.execute("SELECT * FROM users")
+
+    while True:
+        row = cur.fetchone()
+
+        if row == None:
+            break
+        docs.append(row["tags"])
+
+    except psycopg2.DatabaseError, e:
+        if con:
+            con.rollback()
+
+        print( 'Error %s' % e )
+        sys.exit(1)
+
+    finally:
+        if con:
+            con.close()
+
     tfidf = TfidfVectorizer().fit_transform(doc)
     cosine_similarities = linear_kernel(tfidf[index-1:index], tfidf).flatten()
     matches = sorted(range(len(cosine_similarities)), key=lambda i:cosine_similarities[i])[::-1][1:4]
     return matches
 
 
-returnTopThree(3)
-
-#def addAndUpdate(source_file_name):
-#    url = addCloud(source_file_name)
 
 
+def addAndUpdate(source_file_name):
+    url = addCloud(source_file_name)
 
-#def createUserTags():
+
+
+def createUserTags():
 
 
 #INSERT INTO users(firstname, lastname, email, birthday, sex, orientation, location, address, pwdhash, image, private, tags, matched, flag, priv)
