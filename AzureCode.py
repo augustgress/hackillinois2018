@@ -4,7 +4,7 @@ assert subscription_key
 vision_base_url = "https://eastus.api.cognitive.microsoft.com/vision/v1.0/"
 
 vision_analyze_url = vision_base_url + "analyze"
-image_url = "http://img1.sunset.timeinc.net/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/2016/09/main/camping-with-kids-lake-alpine-sierra-nevada-family-night-out-0514.jpg?itok=ocbTWgVV"
+image_url = "http://farm4.static.flickr.com/3562/3379213546_354531df99.jpg%0A"
 
 import requests
 headers  = {'Ocp-Apim-Subscription-Key': subscription_key }
