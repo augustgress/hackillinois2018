@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "atomic-affinity-196218",
+  "private_key_id": "39408b4ef49fa93949ea0185c20582e562821ba6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDFhLy87AmA03Dn\n8OeCjGw6KgNlA7obZcAlA5oyu4s4uoYEk/EAGGzW6yO7JiQ8N4nAB3cAN5jcB7As\nyRIojOuMGqkxYfg2twImicWuBuznF9XWdGKRNztUUN2qc7OwvC1M7asBd2VUU1FW\n9957bdkPOKmdKCSNx22RKgLVFN+HGk2k/w61rbBhjjJrzg/mhhrGOFZNXhIfBqE3\n9Hj/VIvLxp+/Eu/QHU/Lce85b8aIaAoPKrBJWV6mxuXeNYd1Ji1S6avA5YT1oBUo\nXrBQyp1syUVvM6gCQhLKUE4g1TcdfaMO7tG34EnxDNC6uDxFtvcsNZQN+lET3J5O\n2Cnhcs1TAgMBAAECggEAGzqFtDuLwdUkIu1MVOxbvRbumd3OKZm4x8F739OHyT25\nXOcyGXPEiUooBlQnOZ/kXvMIfiCr82Uh7cKYPLvUet9wBI0/ZPeMldh3RlrRDLh1\n85bewasOBD0TmbxSgKIoUosPAGg/sUS9GVKZOoW1nwoOI8qVY3AjFBhpBIvYlqyV\nBAXfY2+kqsamD3icjo9fQMmIb2KZA7iyE3xRoCQ+k9kmrgvy9VNDQ3o4el7192rD\nbg876Pkr+CDtyqF5OCfq7UUtjnYSgNQX05M9NI7TtFTYbTHYCU3UX7iJ1+7WSeQO\noAyS8amcBluC0U79HARH0mLPxo/tLkBB443RdtgkWQKBgQDsv5nMCD0Audl27McO\nBAoWzYH2ups4GEHLXwvZFqqpUgv253gai0HQMuJ7VI9A1k0C5AREJfApeiKHSpKw\nk/czjKKs6jMcmbCf19KkIHwO1m7fLwv0H4d9bZTl6krRpfSjuMRyQwYA40hBA4iv\n4yhEKnjDM7exM3yc3ja+XlIJmQKBgQDVlHxbTodH8sI18jGGQ8qquSzlUhkNVWUU\nhWCuLVMy/TcNkglmOi7GXzzIwdsO29Z1q0tRB3vTcyT87gUVe+Spoq8/dF4x0MLh\nscPyPSRfJg6NIE/nmCcax7An63zx2a4+kKF/MzYS7uxapc6kZkIj8tuDW5CnjOni\nP2CEKOdZywKBgHMaaHTpYHdU5GTMk669ygXyHojNix/Hs11kNYdzXL/7svN08FC/\nedz2kGRz5T4ZstF/+I8FfvE7f0QVvqH5HovCiWjWaMkz88qTDMddP9Oa78a0wfQL\nzDzwJR9vPLcXH4zmDSScb3PJDN0HEdKp927E03fcUifmJ2TBKQ5/HxWpAoGAFffo\n9qdUKOVibpQT3gCZFwhnAst4AjQXao3xjNjipur+v6mWx+oSJ5tiMDAobRXVsFLH\nM3V2miBM3KtK4JPWyFAQgJFiovMbKIXVZtQ9KoBKnN+G+IZg91M03lZNir7eOlc8\nFU5aMIZcz1IguC5AfVwckh1X+rP21qu4LL/cVBMCgYEAr2mIwzSS1jHPfdt0xbf9\ng6d8YK898WCSQ4twzh5PLUHcXJrMcHksvdM+GP2X1vpJpT453vQ9VgOddT3CDQSJ\nmNoVyZG/X1KDIos1CCwdCacrV/0zBvsZlgpUBj8Wwk/2rHmbmJje/CIGKbUXpeRs\nse8+f7ZUuV/JuCvPRSzHTzM=\n-----END PRIVATE KEY-----\n",
+  "client_email": "atomic-affinity-196218@appspot.gserviceaccount.com",
+  "client_id": "107203628904808883195",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/atomic-affinity-196218%40appspot.gserviceaccount.com"
+}
