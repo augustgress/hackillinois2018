@@ -11,13 +11,13 @@ def bday(form, field):
         raise ValidationError('please enter either male or female')
 
 class SignupFrom(Form):
-    first_name = StringField('First Name', validators=[DataptsRequired("Please enter your first name")])
-    last_name = StringField('Last Name',validators=[DataRequired("Please enter your lst name")])
+    first_name = StringField('First Name', validators=[DataRequired("Please enter your first name")])
+    last_name = StringField('Last Name',validators=[DataRequired("Please enter your last name")])
     email = StringField('Email',validators=[DataRequired("Please enter a valid email"), Email("Please enter a valid email")])
     password = PasswordField('Password',validators=[DataRequired("Please enter a password"),Length(min=6, message="Passwords must be atleast 6 characters long")])
-    sex = StringField('gender',validators=[DataRequired("Please enter a gender"),validate_gen])
-    location = StringFeild('location', validators=[DataRequired("Please enter a Date in the form mm/dd/yyyy"),bday])
-    orientation = StringField('preference', validators=[DataRequired("Please enter who you are looking for"),validate_gen])
+    sex = StringField('Gender',validators=[DataRequired("Please enter a gender"),validate_gen])
+    birthday = StringField('Birthday', validators=[DataRequired("Please enter a Date in the form mm/dd/yyyy"),bday])
+    orientation = StringField('Preference', validators=[DataRequired("Please enter who you are looking for"),validate_gen])
     address = StringField('Location', validators=[DataRequired("Please enter a valid address or location")])
     submit = SubmitField('Sign up')
 
@@ -29,6 +29,3 @@ class LoginForm(Form):
 class AddressForm(Form):
   address = StringField('Location', validators=[DataRequired("Please enter a valid address or location")])
   submit = SubmitField("Search")
-
-
-class ImageForm(Form):

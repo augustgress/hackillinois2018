@@ -1,7 +1,6 @@
-
 from flask import Flask, render_template, request, session, redirect, url_for #import class and function
 from models import db, User, Place #import db variable
-from forms import SignupFrom, LoginForm, AddressForm, BudgetForm
+from forms import SignupFrom, LoginForm, AddressForm
 
 app = Flask(__name__) #creates instance of flask class
 
@@ -42,7 +41,7 @@ def signup():
                 db.session.commit()
 
                 session['email'] = newuser.email #sets email for session object
-                return redirect(url_for('home.html'))
+                return redirect(url_for('home'))
 
     elif request.method == 'GET':
         return render_template('signup.html',form = form, temp = temp)
@@ -50,7 +49,7 @@ def signup():
 @app.route("/login", methods=["GET","POST"]) #routing to login page
 def login():
     if 'email' in session:
-        return redirect(url_for('home'))
+        return redirect(url_for('budget'))
     form = LoginForm() #creates form object
 
     if request.method == "POST":
@@ -63,7 +62,7 @@ def login():
             user = User.query.filter_by(email=email).first()
             if user is not None and user.check_password(password):
                 session['email'] = form.email.data #sets email for session object
-                return redirect(url_for('home'))
+                return redirect(url_for('budget'))
             else:
                 return redirect(url_for('login'))
     elif request.method == 'GET':
@@ -79,28 +78,7 @@ def home():
     if 'email' not in session: #checks to see if logged in or not
         return redirect(url_for('login'))
 
-    form = AddressForm()
-
-    places = []
-    my_coordinates = (41.7508, 88.1535)
-
-    if request.method == 'POST':
-      if form.validate() == False:
-        my_coordinates = (41.7508, 88.1535)
-        return render_template('home.html', form=form, my_coordinates=my_coordinates)
-      else:
-        # get the address
-        address = form.address.data
-        # query for places around it
-        p = Place()
-        my_coordinates = p.address_to_latlng(address)
-        places = p.query(address)
-
-        # return those results
-        return render_template('home.html', form=form, my_coordinates=my_coordinates, places=places)
-
-    elif request.method == 'GET':
-      return render_template("home.html", form=form, my_coordinates=my_coordinates, places=places)
+    return redirect(url_for('budget'))
 
 @app.route("/budget", methods=["GET","POST"])
 def budget():
