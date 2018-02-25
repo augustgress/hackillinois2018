@@ -168,9 +168,9 @@ class User:
   def printToFile(self, fn):
       with open(fn,"a") as out:
         out.write("INSERT INTO users (firstname, lastname, email, birthday, sex, orientation, location,"+
-        " address, pwdhash, image, private, tags, matched, flag, priv) VALUES ('"+
+        " pwdhash, image, private, tags, matched, flag, priv) VALUES ('"+
         self.fName + "', '" + self.lName + "', '" + self.email + "', '" + self.age + "', '" +
-        self.gend + "', '" + self.orientation + "', '" + self.city + "', '" + self.state + "', '" + self.pw +
+        self.gend + "', '" + self.orientation + "', '" + self.city +", " + self.state + "', '" + self.pw +
         "', '" + self.urlsPublic + "', '" + self.urlsPrivate + "', '" + self.doc + "', '', '', '');")
 
 
