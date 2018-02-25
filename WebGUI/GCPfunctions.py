@@ -64,22 +64,22 @@ def addCloud(source_file_names, index):
                 con = psycopg2.connect("host='localhost' dbname='hackillinois2018'")
                 cur = con.cursor()
                 tempPrivate = ""
-                cur.execute("SELECT * FROM users WHERE Id=%s", (index))
+                cur.execute("SELECT * FROM users WHERE uid=%d", (index))
                 row = cur.fetchone()
                 tempPrivate += row[10]
                 tempPrivate += url + " "
-                cur.execute("UPDATE users SET private=%s WHERE Id=%s", (tempPrivate, index))
+                cur.execute("UPDATE users SET private=%s WHERE uid=%d", (tempPrivate, index))
                 con.commit()
             else:
                 con = None
                 con = psycopg2.connect("host='localhost' dbname='hackillinois2018'")
                 cur = con.cursor()
                 tempPublic = ""
-                cur.execute("SELECT * FROM users WHERE Id=%s", (index))
+                cur.execute("SELECT * FROM users WHERE uid=%d", (index))
                 row = cur.fetchone()
                 tempPublic += row[9]
                 tempPublic += url + " "
-                cur.execute("UPDATE users SET image=%s WHERE Id=%s", (tempPublic, index))
+                cur.execute("UPDATE users SET image=%s WHERE uid=%d", (tempPublic, index))
                 con.commit()
         except:
             print("damn")
@@ -103,20 +103,24 @@ def returnTopThree(index):
     try:
         con = psycopg2.connect("host='localhost' dbname='hackillinois2018'")
         cur = con.cursor()
-        cur.execute("SELECT * FROM users WHEN Id=%s",(index))
+        print("here1")
+        cur.execute("SELECT * FROM users WHERE uid=%d",(index))
+        print("here1")
         row = cur.fetchone()
         tempOrientation = row[5]
-        cur.execute("SELECT * FROM users WHEN sex=%s",(tempOrientation))
+        print("here1")
+        cur.execute("SELECT * FROM users WHERE sex=%s",(tempOrientation))
+        print("here1")
         while(True):
             row = cur.fetchone()
             if (row == None):
                 break
             docs.append(row[11])
-    except psycopg2.DatabaseError, e:
+    except :
         if con:
             con.rollback()
-        print( 'Error %s' % e )
-        sys.exit(1)
+
+        return -1
     finally:
         if con:
             con.close()

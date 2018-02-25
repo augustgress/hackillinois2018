@@ -33,11 +33,12 @@ class User(db.Model): #creates python class to model columns in the table
         self.orientation = orientation.lower()
         self.location = location
         self.set_password(password)
-        self.image = image
-        self.private = private
-        self.tags = tags
-        self.matched = matched
-        self.flag = flag
+        self.birthday = birthday
+        self.image = None
+        self.private = None
+        self.tags = None
+        self.matched = None
+        self.flag = None
 
     def set_password(self,password): #function to encrypt password
         self.pwdhash = generate_password_hash(password)
