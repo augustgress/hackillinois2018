@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <main class="about-section">
+
+    <div class="container">
+      <div class="topnav" id="myTopnav">
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('signup') }}">Sign up</a>
+        <a class="active"  href="{{ url_for('about') }}">About</a>
+      </div>
+      <h2>About My Site</h2>
+      <p>This site contains a simple application that can identify places of interest within walking distance
+      of any location you input into the Application. It can also aid in budgeting for any trip giving a recommended food allowance and
+      showing how much money you have remaining for attractions and souvenirs
+      This site uses postgresql to store user data and only users can access the application, It enables the use of the flask extentions
+    wtforms and sqlalchemy. </p>
+      </div>
+    </main>
+{% endblock %}

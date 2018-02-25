@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, session, redirect, url_for #i
 from models import db, User, Place #import db variable
 from forms import SignupFrom, LoginForm, AddressForm
 from werkzeug.utils import secure_filename
+import GCPfunctions as gcp
 
 
 UPLOAD_FOLDER = 'pics/'
@@ -46,12 +47,12 @@ def signup():
                 return render_template('signup.html', form=form, temp = temp)
             else:
                 temp = 0
-                newuser = User(form.first_name.data, form.last_name.data, form.email.data, form.password.data)
+                newuser = User(form.first_name.data, form.last_name.data, form.email.data, form.password.data, form.sex.data, form.location.data, form.birthday.data, form.orientation.data)
                 db.session.add(newuser)
                 db.session.commit()
 
                 session['email'] = newuser.email #sets email for session object
-                return redirect(url_for('home'))
+                return redirect(url_for('upload'))
 
     elif request.method == 'GET':
         return render_template('signup.html',form = form, temp = temp)
@@ -94,16 +95,11 @@ def upload():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('budget'))
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value=Upload>
-    </form>
-    '''
+            email = session['email']
+            user = User.query.filter_by(email=email).first()
+            #imageNameToVStrings(user.get_pk())
+    elif request.method == 'GET':
+        return render_template('upload.html')
 
 @app.route("/logout") #pops session which is same as logging out
 def logout():

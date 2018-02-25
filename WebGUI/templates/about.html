@@ -5,16 +5,14 @@
 
     <div class="container">
       <div class="topnav" id="myTopnav">
-        <a href="{{ url_for('login') }}">Login</a>
-        <a href="{{ url_for('signup') }}">Sign up</a>
-        <a class="active"  href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('Home') }}">Home</a>
+        <a class="active"  href="{{ url_for('upload') }}">Upload</a>
       </div>
-      <h2>About My Site</h2>
-      <p>This site contains a simple application that can identify places of interest within walking distance
-      of any location you input into the Application. It can also aid in budgeting for any trip giving a recommended food allowance and
-      showing how much money you have remaining for attractions and souvenirs
-      This site uses postgresql to store user data and only users can access the application, It enables the use of the flask extentions
-    wtforms and sqlalchemy. </p>
-      </div>
+      <h1>Upload new File</h1>
+        <p> please upload at least 5 images for best results </p>
+        <form method=post enctype=multipart/form-data>
+          <p><input type=file name=file>
+             <input type=submit value=Upload>
+        </form>
     </main>
 {% endblock %}

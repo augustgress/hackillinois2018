@@ -44,6 +44,8 @@ class User(db.Model): #creates python class to model columns in the table
 
     def check_password(self,password): # used to check password
         return check_password_hash(self.pwdhash, password)
+    def get_pk(self):
+        return self.uid
 
 class Place(object):
 
