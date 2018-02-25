@@ -6,26 +6,41 @@ import psycopg2
 from flask.ext.sqlalchemy import SQLAlchemy #uses extention in this file
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
-
-
+import glob
+import os, shutil, os.path
+from os import walk
+from os import listdir
+from os.path import isfile, join
 
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "PkeyGCP.json"
 import google.cloud.storage
 
+def imageNameToVStrings(index):
+    f = []
+    
+    for (dirpath, dirnames, filenames) in walk('pics/'):
+        f.extend(filenames)
+        break
+            
+        
+    return (addCloud(f, index))
+    
+      
+
+
+
 def addCloud(source_file_names, index):
     # Create a storage client.
-    source_file_names.strip()
-    source_file_name_list = source_file_names.split(" ")
     storage_client = google.cloud.storage.Client()
     bucket_name = 'userpictures1'
     bucket = storage_client.get_bucket(bucket_name)
     subscription_key = "1ce10fd9a4b142f9b31c020ec61d2393"
     assert subscription_key
-    for source_file_name in source_file_name_list:
-        blob = bucket.blob(os.path.basename(source_file_name))
+    for source_file_name in source_file_names:
+        blob = bucket.blob(os.path.basename("/pics/" + source_file_name))
         # Upload the local file to Cloud Storage.
-        blob.upload_from_filename(source_file_name)
+        blob.upload_from_filename("/pics/" + source_file_name)
         url = ("https://storage.googleapis.com/userpictures1/" + source_file_name)
         vision_base_url = "https://eastus.api.cognitive.microsoft.com/vision/v1.0/"
         vision_analyze_url = vision_base_url + "analyze"
@@ -69,6 +84,15 @@ def addCloud(source_file_names, index):
         finally:
             if con:
                 con.close()
+    folder = 'pics/'
+    for the_file in os.listdir(folder):
+        file_path = os.path.join(folder, the_file)
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+        #elif os.path.isdir(file_path): shutil.rmtree(file_path)
+        except Exception as e:
+            print(e)
 
 
 def returnTopThree(index):
