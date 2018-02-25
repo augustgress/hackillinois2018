@@ -9,6 +9,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 from random import randint
 
+
 subscription_key = "1ce10fd9a4b142f9b31c020ec61d2393"
 assert subscription_key
 
