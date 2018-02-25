@@ -7,7 +7,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 
 
-engine = create_engine('sqlite:///:memory:', echo=True)
+engine = create_engine('postgres://localhost/hackillinois2018', echo=True)
 
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "PkeyGCP.json"
@@ -51,14 +51,14 @@ def returnTopThree(index):
     return matches
 
 
+returnTopThree(3)
+
+#def addAndUpdate(source_file_name):
+#    url = addCloud(source_file_name)
 
 
-def addAndUpdate(source_file_name):
-    url = addCloud(source_file_name)
-    
 
-
-def createUserTags():
+#def createUserTags():
 
 
 #INSERT INTO users(firstname, lastname, email, birthday, sex, orientation, location, address, pwdhash, image, private, tags, matched, flag, priv)

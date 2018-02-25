@@ -1,8 +1,16 @@
 {% extends "layout.html" %}
 
 {% block content %}
+
   <main class ="container signup-section">
+    <div class="topnav" id="myTopnav">
+      <a class="active" href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('signup') }}">Sign up</a>
+      <a href="{{ url_for('about') }}">About</a>
+    </div>
+
     <div class="section-content">
+
       <h2>Log in</h2>
       <form method = "POST" action= "/login">
         {{ form.hidden_tag() }}

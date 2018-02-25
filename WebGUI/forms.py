@@ -18,7 +18,7 @@ class SignupFrom(Form):
     sex = StringField('Gender',validators=[DataRequired("Please enter a gender"),validate_gen])
     birthday = StringField('Birthday', validators=[DataRequired("Please enter a Date in the form mm/dd/yyyy"),bday])
     orientation = StringField('Preference', validators=[DataRequired("Please enter who you are looking for"),validate_gen])
-    address = StringField('Location', validators=[DataRequired("Please enter a valid address or location")])
+    location = StringField('Location', validators=[DataRequired("Please enter a valid address or location")])
     submit = SubmitField('Sign up')
 
 class LoginForm(Form):

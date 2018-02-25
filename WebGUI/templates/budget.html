@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <main class="hero-section">
+
+    <div class="container">
+      <div class="topnav" id="myTopnav">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a class="active" href="{{ url_for('budget') }}">Budget</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      </div>
+      <div class-"section-device">
+
+          <form method="GET" action ="/budget">
+            {{form.hidden_tag() }}
+      <div class="budget-tabs">
+      <div class="places">
+            <a class="name">Remaining Budget:</a>
+            {%if usable_money < 0 %}
+            <p class="negprice">${{ usable_money }}</p>
+            <a class="name" > Recommended Daily Food Allowance:</a>
+            <p class="negprice">N/A</p>
+            <a class="name"> Money for Attractions and Souvenirs:</a>
+            <p class="negprice">N/A</p>
+            {% else %}
+            <p class="price">${{ usable_money }}</p>
+            <a class="name"> Recommended Daily Food Allowance:</a>
+            {% if days > 0 %}
+            <p class="price">${{ daily_food }}</p>
+            {% else %}
+            <p class="negprice">N/A</p>
+            {% endif %}
+            <a class="name"> Money for Attractions and Souvenirs:</a>
+            {% if left >= 0 %}
+            <p class="price">${{ left }}</p>
+            {% else %}
+            <p class="negprice">${{ left }}</p>
+            {% endif %}
+            {% endif %}
+
+      </div>
+      </div>
+      </form>
+    </div>
+      <div class ="section-content">
+        <h2>Enter Values</h2>
+
+        <form method="POST" action ="/budget">
+          {{form.hidden_tag() }}
+
+        <div class="form-group">
+          {{ form.budget.label }}
+
+          {% if form.budget.errors %}
+            {% for error in form.budget.errors %}
+              <p class ="error-message">{{ error }}</p>
+            {% endfor %}
+          {% endif %}
+
+          {{ form.budget}}
+        </div>
+        <div class="form-group">
+          {{ form.days.label }}
+
+          {% if form.days.errors %}
+            {% for error in form.days.errors %}
+              <p class ="error-message">{{ error }}</p>
+            {% endfor %}
+          {% endif %}
+
+          {{ form.days}}
+        </div>
+        <div class="form-group">
+          {{ form.nights.label }}
+
+          {% if form.nights.errors %}
+            {% for error in form.nights.errors %}
+              <p class ="error-message">{{ error }}</p>
+            {% endfor %}
+          {% endif %}
+
+          {{ form.nights}}
+        </div>
+        <div class="form-group">
+          {{ form.hotel.label }}
+
+          {% if form.hotel.errors %}
+            {% for error in form.hotel.errors %}
+              <p class ="error-message">{{ error }}</p>
+            {% endfor %}
+          {% endif %}
+
+          {{ form.hotel}}
+        </div>
+        <div class="form-group">
+          {{ form.cRental.label }}
+
+          {% if form.cRental.errors %}
+            {% for error in form.cRental.errors %}
+              <p class ="error-message">{{ error }}</p>
+            {% endfor %}
+          {% endif %}
+
+          {{ form.cRental}}
+        </div>
+        {{ form.submit(class="btn-primary")}}
+      </form>
+      </div>
+  </main>
+{% endblock %}

@@ -64,7 +64,7 @@ def login():
                 session['email'] = form.email.data #sets email for session object
                 return redirect(url_for('budget'))
             else:
-                return redirect(url_for('login'))
+                return redirect(url_for('index'))
     elif request.method == 'GET':
         return render_template('login.html', form=form)
 

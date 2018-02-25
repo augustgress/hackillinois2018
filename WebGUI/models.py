@@ -17,7 +17,6 @@ class User(db.Model): #creates python class to model columns in the table
     sex = db.Column(db.String(10))
     orientation = db.Column(db.String(10))
     location = db.Column(db.String(200))
-    address = db.Column(db.String(100))
     pwdhash = db.Column(db.String(54))
     image = db.Column(db.String(3000))
     private = db.Column(db.String(3000))

@@ -2,6 +2,11 @@
 
 {% block content %}
 <main class = "container signup-section">
+  <div class="topnav" id="myTopnav">
+    <a href="{{ url_for('login') }}">Login</a>
+    <a class="active" href="{{ url_for('signup') }}">Sign up</a>
+    <a href="{{ url_for('about') }}">About</a>
+  </div>
   <div class ="section-content">
     <h2>Create an account</h2>
 
@@ -38,30 +43,11 @@
           <p class ="error-message">{{ error }}</p>
         {% endfor %}
       {% endif %}
-
+      {% if temp == 1 %}
+      <p class ="error-message">email already used</p>
+      {% endif %}
+      
       {{ form.email}}
-    </div>
-    <div class="form-group">
-      {{ form.sex.label }}
-
-      {% if form.sex.errors %}
-        {% for error in form.sex.errors %}
-          <p class ="error-message">{{ error }}</p>
-        {% endfor %}
-      {% endif %}
-
-      {{ form.sex}}
-    </div>
-    <div class="form-group">
-      {{ form.orientation.label }}
-
-      {% if form.orientation.errors %}
-        {% for error in form.orientation.errors %}
-          <p class ="error-message">{{ error }}</p>
-        {% endfor %}
-      {% endif %}
-
-      {{ form.orientation}}
     </div>
     <div class="form-group">
       {{ form.password.label }}

@@ -2,8 +2,13 @@
 
 {% block content %}
   <main class="hero-section">
-    <div class="container">
 
+    <div class="container">
+      <div class="topnav" id="myTopnav">
+        <a class="active" href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('budget') }}">Budget</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      </div>
       <div class="section-tabs">
         <div class="places">
           {% for place in places %}
@@ -27,7 +32,7 @@
               {% endfor %}
             {% endif %}
 
-            {{ form.address(placeholder= "Explore nearby") }}
+            {{ form.address(placeholder= "Enter locations or addresses ie: Naperville") }}
           </div>
 
           {{ form.submit(class="btn-primary") }}
@@ -35,10 +40,13 @@
       </div>
 
       <div id="map"></div>
+
     </div>
 
     <div class="clearfix"></div>
+
     </div>
+
   </main>
 
   <script>
@@ -47,7 +55,6 @@
         ["<h3><a href='{{ place['url'] }}' target='_blank'>{{ place['name'] }}</a></h3> <p>{{ place['time'] }} min away</p>", {{ place['lat'] }}, {{ place['lng'] }} ],
       {% endfor %}
     ];
-
     var map = L.map('map').setView([{{ my_coordinates[0] }}, {{ my_coordinates[1] }}], 15);
     mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
     L.tileLayer(
@@ -56,7 +63,6 @@
         maxZoom: 18,
       }
     ).addTo(map);
-
     for (var i = 0; i < planes.length; i++) {
       marker = new L.marker([planes[i][1],planes[i][2]])
         .bindPopup(planes[i][0])

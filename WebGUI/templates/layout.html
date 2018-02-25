@@ -1,17 +1,74 @@
 <!DOCTYPE html>
 <!--template for most of my html files-->
+
   <html>
+  <style>
+  body {margin:0;}
+
+  .topnav {
+    overflow: hidden;
+    background-color: #f4f4f4;
+  }
+
+  .topnav a {
+    float: left;
+    color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  .topnav a.active {
+    background-color: #3372df;
+    color: white;
+  }
+
+  .budget-tabs {
+    float: right;
+
+    width: 340px;
+
+  }
+  .budget-tabs .places {
+    margin-top: 300px;
+    padding-right: 20px;
+  }
+  .budget-tabs .name {
+
+    font-size: 20px;
+  }
+  .budget-tabs .price {
+    color: #6e6e6e;
+    font-size: 18px;
+    margin: 0;
+  }
+  .budget-tabs .negprice {
+    color: #e21f1f;
+    font-size: 18px;
+    margin: 0;
+  }
+  </style>
     <head>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600'rel='stylesheet'>
         <link href="{{ url_for('static', filename='css/main.css') }}" rel ="stylesheet"> <!--flask function URL4 generates a url for the css file-->
 
-        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+   integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+   crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+crossorigin=""></script>
     </head>
     <body>
       <header>
         <div class="container">
-          <h1 class="title">HackIllinois2018</h1> <!-- title of page-->
+          <a href="{{ url_for('index') }}"<h1 class="title"> <b>Bhavish's Site</b> </h1></a>  <!-- title of page-->
         </div>
       </header>
 
