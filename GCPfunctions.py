@@ -1,5 +1,5 @@
 import os
-
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "PkeyGCP.json"
 import google.cloud.storage
 
 def addCloud(source_file_name):
