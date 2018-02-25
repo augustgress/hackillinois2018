@@ -16,6 +16,3 @@ analysis = response.json()
 
 #image_caption = analysis["description"]["captions"][0]["text"].capitalize()
 print(analysis)
-
-
-//INSERT INTO users(firstname, lastname, email, birthday, sex, orientation, location, address, pwdhash, image, private, tags, matched, flag, priv)

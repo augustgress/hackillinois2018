@@ -1,4 +1,15 @@
 import os
+import sqlalchemy
+# from sqlalchemy import create_engine
+# from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey
+from sqlalchemy.sql import select
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import linear_kernel
+
+
+engine = create_engine('sqlite:///:memory:', echo=True)
+
+
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "PkeyGCP.json"
 import google.cloud.storage
 
@@ -24,3 +35,27 @@ def addCloud(source_file_name):
 
     #export GOOGLE_APPLICATION_CREDENTIALS="./PkeyGCP.json"
 print(addCloud("hike.jpg"))
+
+
+
+def returnTopThree(index):
+    docs = []
+    conn = engine.connect()
+    s = select([users])
+    result = conn.execute(s)
+    for row in result:
+        docs.append(row["docs"])
+    tfidf = TfidfVectorizer().fit_transform(doc)
+    cosine_similarities = linear_kernel(tfidf[5:6], tfidf).flatten()
+    matches = sorted(range(len(a)), key=lambda i:a[i])[::-1][1:]
+
+def removeAndUpdate(url):
+
+def addAndUpdate(source_file_name):
+    addCloud(source_file_name)
+
+
+def createUserTags():
+
+
+#INSERT INTO users(firstname, lastname, email, birthday, sex, orientation, location, address, pwdhash, image, private, tags, matched, flag, priv)
