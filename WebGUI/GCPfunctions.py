@@ -18,7 +18,7 @@ from requests.exceptions import HTTPError
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "PkeyGCP.json"
 import google.cloud.storage
 
-def imageNameToVStrings(em):
+def imageNameToVStrings(index):
     f = []
 
     for (dirpath, dirnames, filenames) in walk('pics/'):
@@ -26,13 +26,13 @@ def imageNameToVStrings(em):
         break
 
 
-    return (addCloud(f, em))
+    return (addCloud(f, index))
 
 
 
 
 
-def addCloud(source_file_names, em):
+def addCloud(source_file_names, index):
     # Create a storage client.
     storage_client = google.cloud.storage.Client()
     bucket_name = 'userpictures1'
@@ -64,22 +64,22 @@ def addCloud(source_file_names, em):
                 con = psycopg2.connect("host='localhost' dbname='hackillinois2018'")
                 cur = con.cursor()
                 tempPrivate = ""
-                cur.execute("SELECT * FROM users WHERE email=%s", (em))
+                cur.execute("SELECT * FROM users WHERE uid = " + index)
                 row = cur.fetchone()
                 tempPrivate += row[10]
                 tempPrivate += url + " "
-                cur.execute("UPDATE users SET private=%s WHERE email=%s", (tempPrivate, em))
+                cur.execute("UPDATE users SET private=%s WHERE uid = "+ index, (tempPrivate))
                 con.commit()
             else:
                 con = None
                 con = psycopg2.connect("host='localhost' dbname='hackillinois2018'")
                 cur = con.cursor()
                 tempPublic = ""
-                cur.execute("SELECT * FROM users WHERE email=%s", (em))
+                cur.execute("SELECT * FROM users WHERE uid = "+index)
                 row = cur.fetchone()
                 tempPublic += row[9]
                 tempPublic += url + " "
-                cur.execute("UPDATE users SET image=%s WHERE email=%s", (tempPublic, em))
+                cur.execute("UPDATE users SET image=%s WHERE uid = " + index, (tempPublic))
                 con.commit()
         except:
             print("damn")
@@ -97,19 +97,18 @@ def addCloud(source_file_names, em):
             print(e)
 
 
-def returnTopThree(em):
+def returnTopThree(index):
     con = None
     docs = []
     try:
         con = psycopg2.connect("host='localhost' dbname='hackillinois2018'")
         cur = con.cursor()
         print("here1")
-        cur.execute("SELECT * FROM users WHERE email=%s",(em))
+        cur.execute("SELECT * FROM users WHERE  uid = " + index)
         print("here1")
         row = cur.fetchone()
-        index = row[0]
-        print(index)
         tempOrientation = row[5]
+        print(index)
         print("here1")
         cur.execute("SELECT * FROM users WHERE sex=%s",(tempOrientation))
         print("here1")
