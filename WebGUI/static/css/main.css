@@ -59,7 +59,7 @@ a {
 }
 
 .btn-primary {
-  background: #4285f4;
+  background: #f94848;
   border: 1px solid #1266f1;
   color: #ffffff;
   font-family: 'Open Sans', sans-serif;
@@ -75,7 +75,7 @@ a {
 .btn-secondary {
   background: #ffffff;
   border: 1px solid #e6e6e6;
-  color: #3372df;
+  color: #ffa3a3;
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
   font-weight: 600;
@@ -87,8 +87,8 @@ a {
 }
 
 .btn-third {
-  background: #4285f4;
-  border: 1px solid #1266f1;
+  background: #ffa3a3;
+  border: 1px solid #f94848;
   color: #ffffff;
   font-family: 'Open Sans', sans-serif;
   font-size: 13px;
@@ -192,7 +192,7 @@ header {
 
 .form-group input {
   border: none;
-  border-bottom: 2px solid #4285f4;
+  border-bottom: 2px solid #ffa3a3;
   background-color: transparent;
   color: #3a3a3a;
   font-size: 18px;
@@ -248,7 +248,7 @@ header {
 
 .section-tabs .places a,
 .section-tabs .places a:visited {
-  color: #3372df;
+  color: #f94848;
 }
 
 
