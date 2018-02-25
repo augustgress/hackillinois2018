@@ -4,7 +4,7 @@ assert subscription_key
 vision_base_url = "https://eastus.api.cognitive.microsoft.com/vision/v1.0/"
 
 vision_analyze_url = vision_base_url + "analyze"
-image_url = "http://farm4.static.flickr.com/3562/3379213546_354531df99.jpg%0A"
+image_url = "https://storage.googleapis.com/userpictures1/hike.jpg"
 
 import requests
 headers  = {'Ocp-Apim-Subscription-Key': subscription_key }
@@ -16,3 +16,6 @@ analysis = response.json()
 
 #image_caption = analysis["description"]["captions"][0]["text"].capitalize()
 print(analysis)
+
+
+//INSERT INTO users(firstname, lastname, email, birthday, sex, orientation, location, address, pwdhash, image, private, tags, matched, flag, priv)

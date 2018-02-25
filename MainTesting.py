@@ -167,18 +167,25 @@ class User:
 
   def printToFile(self, fn):
       with open(fn,"a") as out:
-        out.write("FNAME: "+self.fName+"\n")
-        out.write("LNAME: "+self.lName+"\n")
-        out.write("AGE: "+self.age+"\n")
-        out.write("GENDER: "+self.gend+"\n")
-        out.write("ORIENTATION: "+self.orientation+"\n")
-        out.write("LOCATION: "+self.city+", "+self.state+"\n")
-        out.write("EMAIL: "+self.email+"\n")
-        out.write("PASSWORD: "+self.pw+"\n")
-        out.write("PRIVATE URLs: "+self.urlsPrivate+"\n")
-        out.write("PUBLIC URLs: "+self.urlsPublic+"\n")
-        out.write("DOCUMENT: "+self.doc+"\n")
-        out.write("\n")
+        out.write("INSERT INTO users (firstname, lastname, email, birthday, sex, orientation, location,"+
+        " address, pwdhash, image, private, tags, matched, flag, priv) VALUES ('"+
+        self.fName + "', '" + self.lName + "', '" + self.email + "', '" + self.age + "', '" +
+        self.gend + "', '" + self.orientation + "', '" + self.city + "', '" + self.state + "', '" + self.pw +
+        "', '" + self.urlsPublic + "', '" + self.urlsPrivate + "', '" + self.doc + "', '', '', '');")
+
+
+        # out.write("FNAME: "+self.fName+"\n")
+        # out.write("LNAME: "+self.lName+"\n")
+        # out.write("AGE: "+self.age+"\n")
+        # out.write("GENDER: "+self.gend+"\n")
+        # out.write("ORIENTATION: "+self.orientation+"\n")
+        # out.write("LOCATION: "+self.city+", "+self.state+"\n")
+        # out.write("EMAIL: "+self.email+"\n")
+        # out.write("PASSWORD: "+self.pw+"\n")
+        # out.write("PRIVATE URLs: "+self.urlsPrivate+"\n")
+        # out.write("PUBLIC URLs: "+self.urlsPublic+"\n")
+        # out.write("DOCUMENT: "+self.doc+"\n")
+        # out.write("\n")
   # def getUrls(self):
   #     return self.urls
   # def getDoc(self):
@@ -189,8 +196,8 @@ class User:
 # user.printToFile("Users/users.txt")
 
 count = 0
-for i in range(30):
+for i in range(1):
     user = User()
     print(count+1)
-    user.printToFile("Users/users.txt")
+    user.printToFile("Users/usersNew.txt")
     count +=1
