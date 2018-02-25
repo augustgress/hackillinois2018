@@ -103,20 +103,19 @@ def returnTopThree(index):
     try:
         con = psycopg2.connect("host='localhost' dbname='hackillinois2018'")
         cur = con.cursor()
-        print("here1")
-        cur.execute("SELECT * FROM users WHERE  uid = " + index)
-        print("here1")
+        qur = "SELECT * FROM users WHERE uid = " + str(index)
+        cur.execute(qur)
         row = cur.fetchone()
-        tempOrientation = row[5]
-        print(index)
-        print("here1")
-        cur.execute("SELECT * FROM users WHERE sex=%s",(tempOrientation))
-        print("here1")
+        tempOrientation = row[7]
+        print(tempOrientation)
+        qur = "SELECT * FROM users"
+        cur.execute(qur)
         while(True):
             row = cur.fetchone()
             if (row == None):
                 break
-            docs.append(row[11])
+            if(row[6] == tempOrientation):
+                docs.append(row[11])
     except :
         if con:
             con.rollback()

@@ -13,9 +13,9 @@ class User(db.Model): #creates python class to model columns in the table
     firstname = db.Column(db.String(100))
     lastname = db.Column(db.String(100))
     email = db.Column(db.String(120), unique = True)
-    birthday = db.Column(db.String(8))
-    sex = db.Column(db.String(10))
-    orientation = db.Column(db.String(10))
+    birthday = db.Column(db.String(50))
+    sex = db.Column(db.String(50))
+    orientation = db.Column(db.String(50))
     location = db.Column(db.String(200))
     pwdhash = db.Column(db.String(54))
     image = db.Column(db.String(3000))
@@ -25,7 +25,7 @@ class User(db.Model): #creates python class to model columns in the table
     flag = db.Column(db.String(3000))
     priv = db.Column(db.String(3000))
 
-    def __init__(self,firstname,lastname,email,password,sex,orientation, location, image, private, tags, matched,flag): # constructor to set attributes
+    def __init__(self,firstname,lastname,email,password,sex,orientation, birthday,location): # constructor to set attributes
         self.firstname = firstname.title()
         self.lastname = lastname.title()
         self.email = email.lower()
