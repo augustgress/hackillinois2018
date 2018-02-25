@@ -46,13 +46,16 @@ def returnTopThree(index):
     for row in result:
         docs.append(row["docs"])
     tfidf = TfidfVectorizer().fit_transform(doc)
-    cosine_similarities = linear_kernel(tfidf[5:6], tfidf).flatten()
-    matches = sorted(range(len(a)), key=lambda i:a[i])[::-1][1:]
+    cosine_similarities = linear_kernel(tfidf[index-1:index], tfidf).flatten()
+    matches = sorted(range(len(cosine_similarities)), key=lambda i:cosine_similarities[i])[::-1][1:4]
+    return matches
 
-def removeAndUpdate(url):
+
+
 
 def addAndUpdate(source_file_name):
-    addCloud(source_file_name)
+    url = addCloud(source_file_name)
+    
 
 
 def createUserTags():
