@@ -64,22 +64,22 @@ def addCloud(source_file_names, index):
                 con = psycopg2.connect("host='localhost' dbname='hackillinois2018'")
                 cur = con.cursor()
                 tempPrivate = ""
-                cur.execute("SELECT * FROM users WHERE uid = " + index)
+                cur.execute("SELECT * FROM users WHERE uid = " + str(index))
                 row = cur.fetchone()
                 tempPrivate += row[10]
                 tempPrivate += url + " "
-                cur.execute("UPDATE users SET private=%s WHERE uid = "+ index, (tempPrivate))
+                cur.execute("UPDATE users SET private=%s WHERE uid = "+ str(index), (tempPrivate))
                 con.commit()
             else:
                 con = None
                 con = psycopg2.connect("host='localhost' dbname='hackillinois2018'")
                 cur = con.cursor()
                 tempPublic = ""
-                cur.execute("SELECT * FROM users WHERE uid = "+index)
+                cur.execute("SELECT * FROM users WHERE uid = "+str(index))
                 row = cur.fetchone()
                 tempPublic += row[9]
                 tempPublic += url + " "
-                cur.execute("UPDATE users SET image=%s WHERE uid = " + index, (tempPublic))
+                cur.execute("UPDATE users SET image=%s WHERE uid = " + str(index), (tempPublic))
                 con.commit()
         except:
             print("damn")
@@ -129,7 +129,7 @@ def returnTopThree(index):
     matches = sorted(range(len(cosine_similarities)), key=lambda i:cosine_similarities[i])[::-1][1:4]
     return matches
 
-print(returnTopThree(5))
+imageNameToVStrings(5)
 
 
 
