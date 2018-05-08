@@ -1,3 +1,8 @@
+/*
+Creates Random Test Profiles using random names, addresses, and picture Urls
+*/
+
+
 import json,csv,sqlite3,requests,random
 from requests.exceptions import HTTPError
 from random import choice
@@ -34,7 +39,7 @@ def random_line(afile):
     for num, aline in enumerate(afile):
       if random.randrange(num + 2): continue
       line = aline
-    return line  
+    return line
 
 def getUrls(s):
   ret = []
@@ -49,7 +54,7 @@ def getUrls(s):
           ret.append(r.url)
           r.raise_for_status()
         except HTTPError:
-          print("Sah dude this link aint GUCci gang", r.url)
+          print("Invalid URL", r.url)
   print(ret)
   return ret
 
@@ -67,10 +72,10 @@ class User:
     self.lName = lNames[choice(range(len(lNames)))]
     self.city  = cities[randCity][0]
     self.state = cities[randCity][1]
-    self.email = getRandStr(choice(range(4,20)))+choice(["@gmail.com","@onet.pl","@yahoo.com","@yolo.swag","@gucci.gang","@hotmail.com"])
+    self.email = getRandStr(choice(range(4,20)))+choice(["@gmail.com","@onet.pl","@yahoo.com","@illinois.edu","@aol.com","@hotmail.com"])
     self.pw    = getRandStr(choice(range(4,20)))
     self.urls  = getUrls(random.sample(set(cats),3))
-  
+
 def random_line(afile):
     line = next(afile)
     for num, aline in enumerate(afile):
@@ -78,7 +83,7 @@ def random_line(afile):
       line = aline
     return line
 
-#Stores each "random" entry into a db.  
+#Stores each "random" entry into a db.
 def storeInDb(num):
   conn = sqlite3.connect('people.db')
   #c = conn.cursor()
@@ -89,14 +94,14 @@ def storeInDb(num):
   #for i in range(num):
   u = User()
     #c.execute("INSERT INTO people VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')".format(u.fName,u.lName,u.gend,u.city,u.state,u.email,u.pw))
-      
+
   # Save (commit) the changes
   #conn.commit()
 
   # We can also close the connection if we are done with it.
   # Just be sure any changes have been committed or they will be lost.
   #conn.close()
-  
+
 def main():
   storeInDb(100)
 

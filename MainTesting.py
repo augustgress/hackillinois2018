@@ -1,6 +1,7 @@
-# from autoprofile import parser
-#
-# user = parser.User()
+/*
+Creates Random Test Profiles using random names, addresses, and picture Urls
+*/
+
 import json,csv,sqlite3,requests,random
 from requests.exceptions import HTTPError
 from random import choice
@@ -22,6 +23,8 @@ vision_analyze_url = vision_base_url + "analyze"
 
 #print(analysis["tags"][0]["confidence"])
 
+# Get tags from Azure API, and based off of the confidence, multiply the times the tag
+# shows up in the document.
 def AccountDocTag(URL):
     doc = ""
     try:
@@ -40,6 +43,7 @@ def AccountDocTag(URL):
         return ""
     return doc
 
+#categories of different image categories
 cats = ["Animal.txt", "Artifact.txt", "Computer.txt", "Food.txt", "Fungus.txt","Geo.txt", "Person.txt", "Plant.txt","Sport.txt"]
 
 #gets a city with its state
@@ -87,6 +91,8 @@ def getUrls(s):
           f.seek(0)
           r.raise_for_status()
           tempUrl = r.url
+          # Through testing, it was found if a URL contains any of these,
+          # then they are not valid
           if "unavailable" in tempUrl or "???" in tempUrl or "jpg" not in tempUrl:
               continue
           ret.append(tempUrl)
@@ -166,6 +172,7 @@ class User:
     print(self.urlsPublic)
     print(self.doc)
 
+#put into format so that it can be put into a SQL database
   def printToFile(self, fn):
       with open(fn,"a") as out:
         out.write("INSERT INTO users (firstname, lastname, email, birthday, sex, orientation, location,"+
@@ -174,30 +181,10 @@ class User:
         self.gend + "', '" + self.orientation + "', '" + self.city +", " + self.state + "', '" + self.pw +
         "', '" + self.urlsPublic + "', '" + self.urlsPrivate + "', '" + self.doc + "', '', '', '');\n\n\n\n")
 
-
-        # out.write("FNAME: "+self.fName+"\n")
-        # out.write("LNAME: "+self.lName+"\n")
-        # out.write("AGE: "+self.age+"\n")
-        # out.write("GENDER: "+self.gend+"\n")
-        # out.write("ORIENTATION: "+self.orientation+"\n")
-        # out.write("LOCATION: "+self.city+", "+self.state+"\n")
-        # out.write("EMAIL: "+self.email+"\n")
-        # out.write("PASSWORD: "+self.pw+"\n")
-        # out.write("PRIVATE URLs: "+self.urlsPrivate+"\n")
-        # out.write("PUBLIC URLs: "+self.urlsPublic+"\n")
-        # out.write("DOCUMENT: "+self.doc+"\n")
-        # out.write("\n")
-  # def getUrls(self):
-  #     return self.urls
-  # def getDoc(self):
-  #     return self.doc
-
-# user = User()
-# #user.printUser()
-# user.printToFile("Users/users.txt")
-
+#create set amount of dummy users to test with
+numUsers = 30
 count = 0
-for i in range(30):
+for i in range(numUsers):
     user = User()
     print(count+1)
     user.printToFile("Users/usersNew.txt")

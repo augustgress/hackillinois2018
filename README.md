@@ -2,26 +2,23 @@
 HackIllinois 2018 Project - Contributors: Bhavish Bhattar, Mike Shea, August Gress, Peter Tatkowski
 
 # MePhoto
-Connect to other of similiar interest by matching with individuals with a similiar taste of photagraphy as you! 
+Find friends by matching with individuals with a similar taste of photography as you!
   * Simply upload any pictures to your profile
-  * Any pictures that are uploaded with people or faces in them will not be availalble for other users to see
-  * Used Azure Computer Vision API to tag images, and based on confidence intervals, creates weighted documents which are then vectorized using tf-idf and then compared using cosine similiarity and other specified user preferences (e.g, orienetation, age)
-  * We want users to connect based of similiar interest displayed through their photos. After connecting, they will be given the option to allow the other user to see their private section of their account, which may include actual pictures of themselves.
+  * Any pictures that are uploaded with people or faces in them will not be available for other users to see
+  * Used Azure Computer Vision API to tag images, and based on confidence intervals, creates weighted documents which are then vectorized using tf-idf and then compared using cosine similarity and other specified user preferences (e.g, orientation, age)
+  * We want users to connect based of similar interest displayed through their photos. After connecting, they will be given the option to allow the other user to see their private section of their account, which may include actual pictures of themselves.
 
 ## USAGE
   * To be completed
-  
+
 ## BUILD/INSTALLATION INSTRUCTIONS
   * Web
     * To be completed
 
-
-## OTHER SOURCES OF DOCUMENTATION
-
 ## Contributor Guide
-[LINK TO CONTRIBUTING.md]
+[Link to _CONTRIBUTERS.md_](CONTRIBUTERS.md)
 
-## MIT License 
+## MIT License
 Copyright 2018 Michael Shea
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
